@@ -1,1 +1,87 @@
+/* Fondo azul claro para toda la página */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0; /* Asegurarse de que no haya margen extra alrededor del cuerpo */
+    padding: 0 20px 20px 20px; /* Agregar padding solo en los lados y arriba */
+    background-color: #e0f7fa; /* Azul claro */
+}
 
+/* Estilo del título */
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+/* Estilo del formulario */
+form {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+label, input, button {
+    margin: 10px;
+}
+
+/* Estilo para los botones de buscar y limpiar */
+button {
+    background-color: #005792; /* Azul oscuro */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+/* Efecto hover para los botones */
+button:hover {
+    background-color: #003f6b; /* Azul aún más oscuro para hover */
+}
+
+/* Estilo moderno para las tablas */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #00796b; /* Verde oscuro */
+    color: white;
+}
+
+td {
+    background-color: white;
+}
+
+tr:hover {
+    background-color: #b2dfdb; /* Verde claro */
+}
+
+/* Estilo para el pie de página con degradado */
+footer {
+    text-align: center;
+    padding: 15px;
+    background: linear-gradient(to right, #005792, #007bb5); /* Degradado azul oscuro a azul medio */
+    color: white;
+    margin-top: 40px;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    border-top: 2px solid #003f6b; /* Borde superior */
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2); /* Sombra superior */
+    position: fixed;
+    left: 0; /* Asegurar que el pie de página se extienda de borde a borde */
+    width: 100%;
+    bottom: 0;
+}
