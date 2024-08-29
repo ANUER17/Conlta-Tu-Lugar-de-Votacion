@@ -1,1 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulte su Lugar de Votación</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <h1>Consulte su Lugar de Votación</h1>
+    
+    <!-- Formulario -->
+    <form id="buscar-form">
+        <label for="cedula">Número de Cédula:</label>
+        <input type="text" id="cedula" name="cedula" required>
+        <button type="submit">Buscar</button>
+        <button type="button" id="limpiar">Limpiar</button>
+    </form>
+    
+    <!-- Resultado -->
+    <div id="resultado"></div>
+    
+    <!-- Pie de página -->
+    <footer>
+        <p>Este sitio web fue creado por Anuer Cortes Pacheco</p>
+    </footer>
 
+    <script>
+        document.getElementById('buscar-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const cedula = document.getElementById('cedula').value;
+
+            fetch('/buscar', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `cedula=${cedula}`,
+            })
+            .then(response => response.json())
+            .then(data => {
+                const resultadoDiv = document.getElementById('resultado');
+                resultadoDiv.innerHTML = '';
+                if (data.status === 'success') {
+                    const datos = data.data[0];
+                    resultadoDiv.innerHTML = `
+                        <table>
+                            <tr><th>Número de Cédula</th><td>${datos['Número de Cédula']}</td></tr>
+                            <tr><th>Nombres</th><td>${datos['Nombres']}</td></tr>
+                            <tr><th>Apellidos</th><td>${datos['Apellidos']}</td></tr>
+                            <tr><th>Dirección</th><td>${datos['Dirección']}</td></tr>
+                            <tr><th>Número de Contacto</th><td>${datos['Número de Contacto']}</td></tr>
+                            <tr><th>Lugar de Votación</th><td>${datos['Lugar de Votación']}</td></tr>
+                            <tr><th>Mesa de Votación</th><td>${datos['Mesa de Votación']}</td></tr>
+                            <tr><th>Tipo de Transporte</th><td>${datos['Tipo de Transporte']}</td></tr>
+                        </table>
+                    `;
+                } else {
+                    resultadoDiv.innerHTML = `<p>${data.message}</p>`;
+                }
+            });
+        });
+
+        document.getElementById('limpiar').addEventListener('click', function() {
+            document.getElementById('cedula').value = '';
+            document.getElementById('resultado').innerHTML = '';
+        });
+    </script>
+</body>
+</html>
